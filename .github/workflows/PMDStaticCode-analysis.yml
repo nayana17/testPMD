@@ -29,7 +29,7 @@ jobs:
           pmd-version: 'latest'
           file-path: './src'
           rules-path: './pmd-ruleset.xml'
-          error-rules: 'AvoidDirectAccessTriggerMap,AvoidDmlStatementsInLoops,AvoidHardcodingId'
+          error-rules: 'AvoidDirectAccessTriggerMap,AvoidDmlStatementsInLoops,AvoidHardcodingId,ClassNamingConventions'
           note-rules: 'ApexDoc'
       - name: No PMD Errors?
         run: |
