@@ -23,14 +23,7 @@ jobs:
           # Incremental diffs require fetch depth to be at 0 to grab the target branch
           fetch-depth: '0'
       - name: Run PMD Analyser
-        id: pmd-analysis
-        uses: synergy-au/pmd-analyser-action@v2.1
-        with:
-          pmd-version: 'latest'
-          file-path: './src'
-          rules-path: './pmd-ruleset.xml'
-          error-rules: 'AvoidDirectAccessTriggerMap,AvoidDmlStatementsInLoops,AvoidHardcodingId,ClassNamingConventions'
-          note-rules: 'ApexDoc'
+        run:  pmd -d ./classes -R ./pmd-ruleset.xml' -f csv
       - name: No PMD Errors?
         run: |
           if ${{ steps.pmd-analysis.outputs.error-found }}
