@@ -1,32 +1,13 @@
-          
-name: PMD Static Code Analysis
-on:
-  pull_request:
-    branches:
-      - main
-  push:
-    branches:
-      - main
+name: PMD Source Code Analyzer on Push
+
+on: [push]
 
 jobs:
-  pmd-analyser-check:
-    name: PMD Static Code Analysis
-    permissions:
-      security-events: write
-      actions: read
-      contents: read
+  pmd:
+  
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          # Incremental diffs require fetch depth to be at 0 to grab the target branch
-          fetch-depth: '0'
-      - name: Run PMD Analyser
-        run:  pmd -d ./classes -R ./pmd-ruleset.xml' -f csv
-      - name: No PMD Errors?
-        run: |
-          if ${{ steps.pmd-analysis.outputs.error-found }}
-          then
-            exit 3
-          fi
+      - uses: sfdx-actions/setup-pmd@v1
+      - name: run-pmd
+        run: pmd -d ./force-app/main/default/classes -R category/apex/design.xml -f text
