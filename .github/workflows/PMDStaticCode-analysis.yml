@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: sfdx-actions/setup-pmd@v1
-      - name: run-pmd
-        run: pmd -d ./classes -R ./rulesets/apexruleset.xml -f html
+      - name: PMD - Salesforce APEX code analyzer action
+        # You may pin to the exact commit or the version.
+        # uses: legetz/setup-pmd@59d7335b4050291cafea4f5f78cda06c88d9814d
+        uses: legetz/setup-pmd@v6.38
